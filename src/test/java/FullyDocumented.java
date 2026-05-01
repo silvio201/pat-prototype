@@ -10,8 +10,9 @@ public class FullyDocumented {
      * @param a Die erste ganze Zahl.
      * @param b Die zweite ganze Zahl.
      * @return Die Summe von a und b.
+     * @throws RuntimeException test
      */
-    public int add(int a, int b) {
+    public int add(int a, int b) throws RuntimeException {
         return a + b;
     }
 
