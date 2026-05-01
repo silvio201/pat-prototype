@@ -23,7 +23,7 @@ jobs:
         # Hier wird dein Programm ausgeführt. 
         # Wenn es exit(1) aufruft, stoppt dieser Schritt und der gesamte Job.
         run: |
-          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj 0.8
+          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj 0.5
         
         # Optional: Wenn du willst, dass der Fehler im Log schön formatiert ist
         continue-on-error: false # Standardmäßig true, aber wir wollen den Fehler sehen
