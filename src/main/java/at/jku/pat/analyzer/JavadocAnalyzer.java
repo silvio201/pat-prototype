@@ -50,8 +50,7 @@ public class JavadocAnalyzer {
                 log(path, r);
                 result = result.combine(r);
             } catch (IOException e) {
-                //TODO
-                throw new RuntimeException(e);
+                System.err.printf("Java File %s could not be parsed.%n", path.toAbsolutePath());
             }
 
         }
