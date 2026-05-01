@@ -1,8 +1,7 @@
-package application;
+package at.jku.pat.application;
 
-import analyzer.JavadocAnalyzer;
-import model.AnalyzeOptions;
-import model.AnalyzeResult;
+import at.jku.pat.analyzer.JavadocAnalyzer;
+import at.jku.pat.model.AnalyzeResult;
 import org.apache.commons.cli.*;
 
 import java.io.IOException;
@@ -16,36 +15,38 @@ public class Main {
     public static void main(String[] args) throws ParseException {
         Options options = new Options();
         options.addOption("p", "path", true, "Path to root directory of analysis.");
-        options.addOption("anyjth", true, "AnyJ Threshold");
+        options.addOption("anyj", true, "AnyJ Threshold");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
 
         Path path = null;
-        double anyJThreshold = 0.8; // DEFAULT
+        double anyJThreshold = 0;
 
         if (cmd.hasOption("path")) {
             path = Paths.get(cmd.getOptionValue("path"));
         } else {
+            System.err.println("No path specified, exiting...");
             System.exit(1);
         }
-        if (cmd.hasOption("anyjth")) {
+        if (cmd.hasOption("anyj")) {
             try {
-                anyJThreshold = Double.parseDouble(cmd.getOptionValue("anyjth"));
+                anyJThreshold = Double.parseDouble(cmd.getOptionValue("anyj"));
+                if (anyJThreshold <= 0 || anyJThreshold > 1.0) {
+                    throw new NumberFormatException();
+                }
             } catch (NumberFormatException e) {
                 System.err.println("AnyJ Threshold value could not correctly formated (Double value between 0.0 and 1.0");
+                System.exit(1);
             }
         }
 
         AnalyzeResult result = JavadocAnalyzer.analyze(getJavaPaths(path));
 
-        if (result.anyJ() < anyJThreshold) {
+        if (anyJThreshold != 0.0 && result.anyJ() < anyJThreshold) {
             System.err.printf("AnyJ Value of %.2f does not meet required %.2f threshold.", result.anyJ(), anyJThreshold);
             System.exit(1);
         }
-
-
-        IO.println(String.format("Hello and welcome!"));
     }
     
     private static List<Path> getJavaPaths(Path root) {

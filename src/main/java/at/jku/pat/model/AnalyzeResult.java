@@ -1,9 +1,10 @@
-package model;
+package at.jku.pat.model;
 
 public record AnalyzeResult (long nMethods, long nDocumentedMethods){
 
     public double anyJ() {
-        return (double)nMethods/(double) nDocumentedMethods;
+        if (nMethods == 0) return 0;
+        return (double)nDocumentedMethods/(double) nMethods;
     }
 
     public AnalyzeResult combine(AnalyzeResult other) {
