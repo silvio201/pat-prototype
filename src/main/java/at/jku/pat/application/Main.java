@@ -16,12 +16,14 @@ public class Main {
         Options options = new Options();
         options.addOption("p", "path", true, "Path to root directory of analysis.");
         options.addOption("anyj", true, "AnyJ Threshold");
+        options.addOption("l", "level", true, "Java Language Level");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
 
         Path path = null;
         double anyJThreshold = 0;
+        int javaLevel = 25; // DEFAULT
 
         if (cmd.hasOption("path")) {
             path = Paths.get(cmd.getOptionValue("path"));
@@ -36,15 +38,23 @@ public class Main {
                     throw new NumberFormatException();
                 }
             } catch (NumberFormatException e) {
-                System.err.println("AnyJ Threshold value could not correctly formated (Double value between 0.0 and 1.0");
+                System.err.println("AnyJ Threshold value not correctly formated (Double value between 0.0 and 1.0)");
+                System.exit(1);
+            }
+        }
+        if (cmd.hasOption("level")) {
+            try {
+                javaLevel = Integer.parseInt(cmd.getOptionValue("level"));
+            } catch (NumberFormatException e) {
+                System.err.println("Java Level value not correctly formated.");
                 System.exit(1);
             }
         }
 
-        AnalyzeResult result = JavadocAnalyzer.analyze(getJavaPaths(path));
+        AnalyzeResult result = JavadocAnalyzer.analyze(getJavaPaths(path), javaLevel);
 
         if (anyJThreshold != 0.0 && result.anyJ() < anyJThreshold) {
-            System.err.printf("AnyJ Value of %.2f does not meet required %.2f threshold.", result.anyJ(), anyJThreshold);
+            System.err.printf("AnyJ Value of %.2f does not meet required %.2f threshold.\n", result.anyJ(), anyJThreshold);
             System.exit(1);
         }
     }

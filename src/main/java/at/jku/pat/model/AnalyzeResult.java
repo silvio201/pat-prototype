@@ -3,7 +3,7 @@ package at.jku.pat.model;
 public record AnalyzeResult (long nMethods, long nDocumentedMethods){
 
     public double anyJ() {
-        if (nMethods == 0) return 0;
+        if (nMethods == 0) return 1;
         return (double)nDocumentedMethods/(double) nMethods;
     }
 

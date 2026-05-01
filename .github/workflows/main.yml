@@ -8,6 +8,7 @@ jobs:
 
     env:
       ANYJ_THRESHOLD: 0.90
+      JAVA_LEVEL: 25
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -23,7 +24,7 @@ jobs:
 
       - name: Run Javadoc Metric Checker
         run: |
-          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj $ANYJ_THRESHOLD
+          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj $ANYJ_THRESHOLD -level $JAVA_LEVEL
         continue-on-error: false
         
       - name: Notify Success
