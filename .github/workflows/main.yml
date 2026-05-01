@@ -5,7 +5,9 @@ on: [push, pull_request]
 jobs:
   check-javadoc:
     runs-on: ubuntu-latest
-    
+
+    env:
+      ANYJ_THRESHOLD: 0.90
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -17,16 +19,12 @@ jobs:
           distribution: 'temurin'
 
       - name: Build Project (inkl. Checker)
-        run: mvn clean package # Oder ./gradlew build, je nach deinem Build-Tool
+        run: mvn clean package
 
       - name: Run Javadoc Metric Checker
-        # Hier wird dein Programm ausgeführt. 
-        # Wenn es exit(1) aufruft, stoppt dieser Schritt und der gesamte Job.
         run: |
-          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj 0.5
-        
-        # Optional: Wenn du willst, dass der Fehler im Log schön formatiert ist
-        continue-on-error: false # Standardmäßig true, aber wir wollen den Fehler sehen
+          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj $ANYJ_THRESHOLD
+        continue-on-error: false
         
       - name: Notify Success
         if: success()
