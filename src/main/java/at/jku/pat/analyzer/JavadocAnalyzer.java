@@ -15,6 +15,8 @@ import com.github.javaparser.ast.type.ReferenceType;
 import com.github.javaparser.javadoc.Javadoc;
 import com.github.javaparser.javadoc.JavadocBlockTag;
 import com.github.javaparser.javadoc.JavadocBlockTag.Type;
+import com.github.javaparser.javadoc.description.JavadocDescription;
+import com.github.javaparser.javadoc.description.JavadocDescriptionElement;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,7 +28,7 @@ public class JavadocAnalyzer {
     private final static boolean LOG = true;
 
     public static AnalyzeResult analyze (List<Path> javaPaths, int javaVersion) {
-        AnalyzeResult result = new AnalyzeResult(0, 0, 0, 0);
+        AnalyzeResult result = new AnalyzeResult(0, 0, 0, 0,0);
         ParserConfiguration cfg = new ParserConfiguration();
 
         ParserConfiguration.LanguageLevel level = switch (javaVersion) {
@@ -55,6 +57,7 @@ public class JavadocAnalyzer {
                 long nMethodsDocumented = 0;
                 long nItems = 0;
                 long nDocumentedItems = 0;
+                long wordCount = 0;
 
                 for (MethodDeclaration m : methods) {
                     nMethodsDocumented++;
@@ -93,16 +96,19 @@ public class JavadocAnalyzer {
                                 }
                             }
                         }
-
+                        for(JavadocDescriptionElement desc: jd.getDescription().getElements())
+                        {
+                            wordCount+=desc.toText().split(" ").length;
+                        }
                     }
                 }
-
 
                 AnalyzeResult r = new AnalyzeResult(
                         methods.size(),
                         nMethodsDocumented,
                         nItems,
-                        nDocumentedItems
+                        nDocumentedItems,
+                        wordCount
                 );
                 log(path, r);
                 result = result.combine(r);
@@ -117,7 +123,7 @@ public class JavadocAnalyzer {
 
     private static void log(Path p, AnalyzeResult result) {
         if (LOG) {
-            System.out.printf("ANALYZED: \t%s%nRESULT: %n\tANY_J: \t%.2f%n\tDIR: \t%.2f%n", p.normalize().toAbsolutePath(), result.anyJ(), result.dir());
+            System.out.printf("ANALYZED: \t%s%nRESULT: %n\tANY_J: \t%.2f%n\tDIR: \t%.2f%n \t WJPD: \t%.2f%n", p.normalize().toAbsolutePath(), result.anyJ(), result.dir(), result.wjpd());
         }
     }
 }
