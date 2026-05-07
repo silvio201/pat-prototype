@@ -9,6 +9,10 @@ jobs:
     env:
       ANYJ_THRESHOLD: 0.90
       JAVA_LEVEL: 25
+      DIR: 0.85
+      WJPD: 40
+      KINCAID: 12
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -24,7 +28,7 @@ jobs:
 
       - name: Run Javadoc Metric Checker
         run: |
-          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj $ANYJ_THRESHOLD -level $JAVA_LEVEL -dir 0.85 -wjpd 20 -kincaid 12
+          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj $ANYJ_THRESHOLD -level $JAVA_LEVEL -dir $DIR -wjpd $WJPD -kincaid $KINCAID
         continue-on-error: false
         
       - name: Notify Success
