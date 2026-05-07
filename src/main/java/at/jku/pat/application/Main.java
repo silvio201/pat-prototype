@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Main {
@@ -19,6 +20,8 @@ public class Main {
         options.addOption("l", "level", true, "Java Language Level");
         options.addOption("x", "exclude", true, "Path to excluded Java Files");
         options.addOption("dir", true, "Dir Threshold");
+        options.addOption("wjpd", true, "WJPD Threshold");
+        options.addOption("kincaid", true, "Kincaid Threshold");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
@@ -27,6 +30,8 @@ public class Main {
         List<Path> pathsToExclude = new ArrayList<>();
         double anyJThreshold = 0;
         double dirThreshold = 0;
+        double wjpdThreshold = 0;
+        double kincaidThreshold = 0;
         int javaLevel = 25; // DEFAULT
 
         for (Option opt : cmd.getOptions()) {
@@ -40,8 +45,14 @@ public class Main {
                 case "dir":
                     dirThreshold=parsePercentage(opt,0,1);
                     break;
+                case "wjpd":
+                    wjpdThreshold=parseNumber(opt,0, Optional.empty());
+                    break;
+                case "kincaid":
+                    kincaidThreshold=parseNumber(opt,0, Optional.empty());
+                    break;
                 case "l":
-                    javaLevel = parseNumber(opt,8,25);
+                    javaLevel = parseNumber(opt,8, Optional.of(25));
                     break;
                 case "x":
                     pathsToExclude.add(Paths.get(opt.getValue()));
@@ -61,12 +72,18 @@ public class Main {
 
         if (anyJThreshold != 0.0 && result.anyJ() < anyJThreshold) {
             System.err.printf("AnyJ Value of %.2f does not meet required %.2f threshold.\n", result.anyJ(), anyJThreshold);
-            System.exit(1);
         }
 
         if (dirThreshold != 0.0 && result.dir() < dirThreshold) {
             System.err.printf("Dir Value of %.2f does not meet required %.2f threshold.\n", result.dir(), dirThreshold);
-            System.exit(1);
+        }
+
+        if (wjpdThreshold != 0.0 && result.wjpd() > wjpdThreshold) {
+            System.err.printf("WJPD Value of %.2fis above the threshold of %.2f.\n", result.wjpd(), wjpdThreshold);
+        }
+
+        if (kincaidThreshold != 0.0 && result.kincaid() > kincaidThreshold) {
+            System.err.printf("Kincaid Value of %.2f is above the threshold of %.2f.\n", result.kincaid(), kincaidThreshold);
         }
     }
 
@@ -116,11 +133,11 @@ public class Main {
         return perc;
     }
 
-    private static int parseNumber(Option opt, double min, double max) {
+    private static int parseNumber(Option opt, int min, Optional<Integer> max) {
         int num=0;
         try {
             num = Integer.parseInt(opt.getValue(0));
-            if (num <= min || num > max) {
+            if (num <= min || (!max.isEmpty() && num > max.get() )) {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException e) {
