@@ -29,7 +29,16 @@ import java.util.stream.Collectors;
 public class JavadocAnalyzer {
 
     private final static boolean LOG = true;
-
+    /**
+     * Processes a list of Java files to extract documentation metrics. It configures a
+     * JavaParser based on the specified language level, parses each file, and tallies
+     * method documentation coverage along with readability statistics (word, sentence,
+     * and syllable counts).
+     *
+     * @param javaPaths List of paths to the Java source files to be analyzed.
+     * @param javaVersion The integer representing the Java language level (e.g., 8, 11, 17, 21).
+     * @return An {@link AnalyzeResult} containing the aggregated metrics for all parsed files.
+     */
     public static AnalyzeResult analyze (List<Path> javaPaths, int javaVersion) {
         AnalyzeResult result = new AnalyzeResult(0, 0, 0, 0,0,0,0);
         ParserConfiguration cfg = new ParserConfiguration();
@@ -130,20 +139,41 @@ public class JavadocAnalyzer {
         return result;
     }
 
+    /**
+     * Outputs the analysis metrics for a specific file to the console if logging is enabled.
+     * Displays calculated values such as ANY_J, DIR, WJPD, and Kincaid scores.
+     *
+     * @param p The path of the file that was analyzed.
+     * @param result The analysis results associated with the specific file.
+     */
     private static void log(Path p, AnalyzeResult result) {
         if (LOG) {
             System.out.printf("ANALYZED: \t%s%nRESULT: %n\tANY_J: \t%.2f%n\tDIR: \t%.2f%n \t WJPD: \t%.2f%n \t KINCAID: \t%.2f%n", p.normalize().toAbsolutePath(), result.anyJ(), result.dir(), result.wjpd(),result.kincaid());
         }
     }
 
-    public static int countWords(String text) {
+    /**
+     * Calculates the number of words in a given string by splitting the text
+     * based on whitespace.
+     *
+     * @param text The string to evaluate.
+     * @return The total number of words found.
+     */
+    private static int countWords(String text) {
         if (text == null || text.isEmpty()) return 0;
         // Basic split by whitespace, ignoring punctuation-only "words"
         String[] words = text.trim().split("\\s+");
         return words.length;
     }
 
-    public static int countSentences(String text) {
+    /**
+     * Counts the number of sentences in the provided text using a {@link BreakIterator}
+     * configured for the US locale.
+     *
+     * @param text The string to evaluate.
+     * @return The total number of sentences found.
+     */
+    private static int countSentences(String text) {
         if (text == null || text.isEmpty()) return 0;
         BreakIterator boundary = BreakIterator.getSentenceInstance(Locale.US);
         boundary.setText(text);
@@ -154,7 +184,14 @@ public class JavadocAnalyzer {
         return count;
     }
 
-    public static int countSyllablesInText(String text) {
+    /**
+     * Estimates the total syllable count for a block of text by summing the
+     * syllables of each individual word.
+     *
+     * @param text The string to evaluate.
+     * @return The total estimated syllable count.
+     */
+    private static int countSyllablesInText(String text) {
         String[] words = text.split("\\s+");
         int total = 0;
         for (String word : words) {
@@ -163,6 +200,13 @@ public class JavadocAnalyzer {
         return total;
     }
 
+    /**
+     * Estimates the number of syllables in a single word using heuristic rules,
+     * such as counting vowel groups and adjusting for silent trailing vowels.
+     *
+     * @param word The specific word to evaluate.
+     * @return The estimated number of syllables (minimum of 1).
+     */
     private static int countSyllablesInWord(String word) {
         word = word.toLowerCase().replaceAll("[^a-z]", "");
         if (word.length() <= 3) return 1; // Short words like "the", "it", "a"
