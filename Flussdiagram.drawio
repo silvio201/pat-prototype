@@ -25,11 +25,21 @@
         <mxCell id="ksugLlv1vjvPGeLAoGuu-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Calculate Metrics&lt;br&gt;(ANYJ, DIR, ...)" vertex="1">
           <mxGeometry height="60" width="120" x="210" y="270" as="geometry" />
         </mxCell>
-        <mxCell id="ksugLlv1vjvPGeLAoGuu-15" edge="1" parent="1" source="ksugLlv1vjvPGeLAoGuu-6" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="ksugLlv1vjvPGeLAoGuu-7">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="ksugLlv1vjvPGeLAoGuu-17" edge="1" parent="1" source="ksugLlv1vjvPGeLAoGuu-6" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="ksugLlv1vjvPGeLAoGuu-8">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ksugLlv1vjvPGeLAoGuu-23" connectable="0" parent="ksugLlv1vjvPGeLAoGuu-17" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" value="&lt;div&gt;No&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0171" y="1" as="geometry">
+            <mxPoint x="-4" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksugLlv1vjvPGeLAoGuu-20" edge="1" parent="1" source="ksugLlv1vjvPGeLAoGuu-6" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" target="ksugLlv1vjvPGeLAoGuu-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ksugLlv1vjvPGeLAoGuu-22" connectable="0" parent="ksugLlv1vjvPGeLAoGuu-20" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" value="&lt;div&gt;Yes&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.2922" y="3" as="geometry">
+            <mxPoint x="-7" y="-20" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="ksugLlv1vjvPGeLAoGuu-6" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" value="Any Metric&amp;nbsp;&lt;br&gt;&amp;lt;&lt;br&gt;Defined&lt;br&gt;Threshold?" vertex="1">
           <mxGeometry height="110" width="120" x="210" y="370" as="geometry" />
@@ -38,7 +48,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ksugLlv1vjvPGeLAoGuu-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Exit Code 1&lt;br&gt;+ Report" vertex="1">
-          <mxGeometry height="60" width="120" x="20" y="395" as="geometry" />
+          <mxGeometry height="60" width="120" x="20" y="520" as="geometry" />
         </mxCell>
         <mxCell id="ksugLlv1vjvPGeLAoGuu-18" edge="1" parent="1" source="ksugLlv1vjvPGeLAoGuu-8" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="ksugLlv1vjvPGeLAoGuu-10">
           <mxGeometry relative="1" as="geometry" />
@@ -47,7 +57,7 @@
           <mxGeometry height="60" width="120" x="400" y="395" as="geometry" />
         </mxCell>
         <mxCell id="ksugLlv1vjvPGeLAoGuu-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" value="Merge Request blocked" vertex="1">
-          <mxGeometry height="60" width="120" x="20" y="520" as="geometry" />
+          <mxGeometry height="60" width="120" x="20" y="645" as="geometry" />
         </mxCell>
         <mxCell id="ksugLlv1vjvPGeLAoGuu-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" value="Merge Request approved" vertex="1">
           <mxGeometry height="60" width="120" x="400" y="520" as="geometry" />
@@ -57,6 +67,12 @@
             <mxPoint x="250" y="440" as="sourcePoint" />
             <mxPoint x="300" y="390" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="ksugLlv1vjvPGeLAoGuu-21" edge="1" parent="1" source="ksugLlv1vjvPGeLAoGuu-19" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="ksugLlv1vjvPGeLAoGuu-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ksugLlv1vjvPGeLAoGuu-19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="Log/Report" vertex="1">
+          <mxGeometry height="60" width="120" x="20" y="400" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
