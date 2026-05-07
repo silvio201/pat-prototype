@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Javadoc Metric Checker
         run: |
-          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj $ANYJ_THRESHOLD -level $JAVA_LEVEL
+          java -jar target/pat-prototype-1.0-SNAPSHOT.jar -p src/test -anyj $ANYJ_THRESHOLD -level $JAVA_LEVEL -dir 0.85 -wjpd 20 -kincaid 12
         continue-on-error: false
         
       - name: Notify Success
