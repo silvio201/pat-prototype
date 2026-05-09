@@ -74,6 +74,7 @@ public class JavadocAnalyzer {
                 long syllablesCount = 0;
 
                 for (MethodDeclaration m : methods) {
+
                     // Get actual method items
                     Set<String> parameters = m.getParameters()
                             .stream()

@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Seite-1" id="KBq5aANI5XATwg-GuKOx">
+    <mxGraphModel dx="2046" dy="1106" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-12" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Main " vertex="1">
+          <mxGeometry height="52" width="160" x="114" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-15" parent="q9EKaQ_C4nFDPn65TISS-12" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ main(args: String[]) : void" vertex="1">
+          <mxGeometry height="26" width="160" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-16" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="JavadocAnalyzer" vertex="1">
+          <mxGeometry height="50" width="360" x="354" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-19" parent="q9EKaQ_C4nFDPn65TISS-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ analyze(List&amp;lt;Path&amp;gt; javaPaths, int javaVersion) : AnalyzeResult" vertex="1">
+          <mxGeometry height="24" width="360" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-30" edge="1" parent="1" source="q9EKaQ_C4nFDPn65TISS-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;exitX=0.26;exitY=0.011;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=open;endFill=0;" target="q9EKaQ_C4nFDPn65TISS-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="195" y="168" />
+              <mxPoint x="194" y="168" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-31" connectable="0" parent="q9EKaQ_C4nFDPn65TISS-30" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;lt;&amp;lt;uses&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0882" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-21" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="AnalyzeResult  " vertex="1">
+          <mxGeometry height="110" width="310" x="114" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-24" parent="q9EKaQ_C4nFDPn65TISS-21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ dir() : double&lt;div&gt;+ anyJ() : double&lt;/div&gt;&lt;div&gt;+ wjpd() : double&lt;/div&gt;&lt;div&gt;+ kincaid() : double&lt;/div&gt;&lt;div&gt;+ combine(AnalyzeResult other) : AnalyzeResult&lt;/div&gt;" vertex="1">
+          <mxGeometry height="84" width="310" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-25" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;" target="q9EKaQ_C4nFDPn65TISS-19">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="334" y="70" />
+              <mxPoint x="334" y="70" />
+            </Array>
+            <mxPoint x="274" y="68.99999999999989" as="sourcePoint" />
+            <mxPoint x="344" y="68.99999999999989" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-26" connectable="0" parent="q9EKaQ_C4nFDPn65TISS-25" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;lt;&amp;lt;uses&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry relative="1" x="0.2444" y="2" as="geometry">
+            <mxPoint x="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-34" edge="1" parent="1" source="q9EKaQ_C4nFDPn65TISS-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="533" y="240" />
+            </Array>
+            <mxPoint x="667.81" y="100" as="sourcePoint" />
+            <mxPoint x="424" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="q9EKaQ_C4nFDPn65TISS-35" connectable="0" parent="q9EKaQ_C4nFDPn65TISS-34" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;lt;&amp;lt;create&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.467" y="-1" as="geometry">
+            <mxPoint y="44" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
