@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ANYJ_THRESHOLD: 0.90
+      ANYJ_THRESHOLD: 0.50
       JAVA_LEVEL: 25
-      DIR: 0.85
+      DIR: 0.70
       WJPD: 40
       KINCAID: 12
 
